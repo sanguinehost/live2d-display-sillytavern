@@ -11,21 +11,57 @@ let renderer = null;
 let extensionSettings = { ...DEFAULT_SETTINGS };
 let expressionTimeout = null;
 /**
+ * Load CDN dependencies
+ */
+async function loadDependencies() {
+    console.log('[Live2D] Loading dependencies...');
+    // Load PixiJS
+    await loadScript('https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js');
+    // Load Live2D Cubism Core
+    await loadScript('https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js');
+    // Load pixi-live2d-display
+    await loadScript('https://cdn.jsdelivr.net/npm/pixi-live2d-display@0.4.0/dist/index.min.js');
+    // Expose Live2DModel globally
+    if (window.PIXI?.live2d?.Live2DModel) {
+        window.Live2DModel = window.PIXI.live2d.Live2DModel;
+    }
+    console.log('[Live2D] Dependencies loaded');
+}
+/**
+ * Load script dynamically
+ */
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+        document.head.appendChild(script);
+    });
+}
+/**
  * Initialize extension
  */
-function initializeExtension() {
+async function initializeExtension() {
     console.log('[Live2D] Initializing extension');
-    // Load settings
-    loadSettings();
-    // Initialize renderer if enabled
-    if (extensionSettings.enabled && extensionSettings.showLive2D) {
-        initializeRenderer();
+    try {
+        // Load CDN dependencies first
+        await loadDependencies();
+        // Load settings
+        loadSettings();
+        // Initialize renderer if enabled
+        if (extensionSettings.enabled && extensionSettings.showLive2D) {
+            initializeRenderer();
+        }
+        // Register event listeners
+        registerEventListeners();
+        // Load current character's model
+        loadCurrentCharacterModel();
+        console.log('[Live2D] Extension initialized');
     }
-    // Register event listeners
-    registerEventListeners();
-    // Load current character's model
-    loadCurrentCharacterModel();
-    console.log('[Live2D] Extension initialized');
+    catch (error) {
+        console.error('[Live2D] Failed to initialize:', error);
+    }
 }
 /**
  * Initialize Live2D renderer

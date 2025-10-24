@@ -5,7 +5,7 @@
 /**
  * Initialize extension
  */
-declare function initializeExtension(): void;
+declare function initializeExtension(): Promise<void>;
 /**
  * Cleanup on extension unload
  */

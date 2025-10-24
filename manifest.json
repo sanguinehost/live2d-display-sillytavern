@@ -5,7 +5,6 @@
   "optional": [],
   "js": "dist/index.js",
   "css": "style.css",
-  "dependencies": ["loader.html"],
   "author": "Paperboy",
   "version": "1.0.0",
   "homePage": "https://github.com/sanguinehost/live2d-display-sillytavern",
