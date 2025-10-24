@@ -1,0 +1,193 @@
+/**
+ * Live2D Display Extension Styles
+ */
+
+/* Live2D Container */
+#live2d-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 400px;
+  height: 600px;
+  z-index: 1000;
+  pointer-events: none; /* Don't block chat interactions */
+  transition: opacity 0.3s ease;
+}
+
+#live2d-canvas {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+/* Hide on mobile if setting enabled */
+@media (max-width: 768px) {
+  #live2d-container.hide-mobile {
+    display: none;
+  }
+
+  #live2d-container {
+    width: 200px;
+    height: 300px;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+/* Settings Panel Styles */
+.live2d-settings {
+  padding: 1rem;
+  background: var(--SmartThemeBodyColor, #1a1a1a);
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.live2d-settings h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--SmartThemeQuoteColor, #ffffff);
+  font-size: 1.2rem;
+}
+
+.live2d-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.live2d-setting-row label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--SmartThemeQuoteColor, #cccccc);
+  flex: 1;
+}
+
+.live2d-setting-row input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.live2d-setting-row input[type="range"] {
+  flex: 1;
+  max-width: 200px;
+}
+
+.live2d-setting-row input[type="number"] {
+  width: 80px;
+  padding: 0.25rem 0.5rem;
+  background: var(--black30a, rgba(0, 0, 0, 0.3));
+  border: 1px solid var(--SmartThemeBorderColor, #444);
+  border-radius: 4px;
+  color: var(--SmartThemeQuoteColor, #ffffff);
+}
+
+.live2d-setting-row select {
+  padding: 0.25rem 0.5rem;
+  background: var(--black30a, rgba(0, 0, 0, 0.3));
+  border: 1px solid var(--SmartThemeBorderColor, #444);
+  border-radius: 4px;
+  color: var(--SmartThemeQuoteColor, #ffffff);
+  cursor: pointer;
+}
+
+/* Model Upload Section */
+.live2d-upload-section {
+  padding: 1rem;
+  background: var(--black30a, rgba(0, 0, 0, 0.3));
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+.live2d-upload-section h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--SmartThemeQuoteColor, #ffffff);
+}
+
+.live2d-upload-section p {
+  font-size: 0.9rem;
+  color: var(--SmartThemeQuoteColor, #aaaaaa);
+  margin-bottom: 1rem;
+}
+
+.live2d-model-info {
+  padding: 0.75rem;
+  background: var(--black50a, rgba(0, 0, 0, 0.5));
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.live2d-model-info p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.live2d-button {
+  padding: 0.5rem 1rem;
+  background: var(--SmartThemeBlurTintColor, #2a2a2a);
+  border: 1px solid var(--SmartThemeBorderColor, #444);
+  border-radius: 4px;
+  color: var(--SmartThemeQuoteColor, #ffffff);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.live2d-button:hover {
+  background: var(--SmartThemeEmColor, #3a3a3a);
+}
+
+.live2d-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.live2d-button.danger {
+  background: #8b0000;
+  border-color: #a00000;
+}
+
+.live2d-button.danger:hover {
+  background: #a00000;
+}
+
+/* Hidden file input */
+input[type="file"].live2d-file-input {
+  display: none;
+}
+
+/* Instructions */
+.live2d-instructions {
+  padding: 1rem;
+  background: var(--black30a, rgba(0, 0, 0, 0.3));
+  border-left: 3px solid var(--SmartThemeEmColor, #4a90e2);
+  border-radius: 4px;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  color: var(--SmartThemeQuoteColor, #cccccc);
+}
+
+.live2d-instructions h4 {
+  margin-top: 0;
+  color: var(--SmartThemeQuoteColor, #ffffff);
+}
+
+.live2d-instructions ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.live2d-instructions li {
+  margin: 0.25rem 0;
+}
+
+.live2d-instructions code {
+  background: var(--black50a, rgba(0, 0, 0, 0.5));
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,272 @@
+<!-- Live2D Display Extension Settings -->
+<div class="live2d-settings">
+  <h3>🎭 Live2D Display Settings</h3>
+
+  <!-- Enable Extension -->
+  <div class="live2d-setting-row">
+    <label>
+      <input type="checkbox" id="live2d-enabled" checked />
+      Enable Extension
+    </label>
+  </div>
+
+  <!-- Show Live2D -->
+  <div class="live2d-setting-row">
+    <label>
+      <input type="checkbox" id="live2d-show" checked />
+      Show Live2D Model
+    </label>
+  </div>
+
+  <!-- Enable Expressions -->
+  <div class="live2d-setting-row">
+    <label>
+      <input type="checkbox" id="live2d-expressions" checked />
+      Auto Expressions
+    </label>
+  </div>
+
+  <!-- Enable Idle Animation -->
+  <div class="live2d-setting-row">
+    <label>
+      <input type="checkbox" id="live2d-idle" checked />
+      Idle Animation
+    </label>
+  </div>
+
+  <!-- Hide on Mobile -->
+  <div class="live2d-setting-row">
+    <label>
+      <input type="checkbox" id="live2d-hide-mobile" checked />
+      Hide on Mobile
+    </label>
+  </div>
+
+  <hr style="margin: 1.5rem 0; border-color: var(--SmartThemeBorderColor, #444);" />
+
+  <!-- Model Scale -->
+  <div class="live2d-setting-row">
+    <label>
+      Model Scale:
+      <input
+        type="range"
+        id="live2d-scale"
+        min="0.1"
+        max="2"
+        step="0.1"
+        value="0.5"
+      />
+      <input type="number" id="live2d-scale-value" min="0.1" max="2" step="0.1" value="0.5" />
+    </label>
+  </div>
+
+  <!-- Position X -->
+  <div class="live2d-setting-row">
+    <label>
+      Position X:
+      <input
+        type="range"
+        id="live2d-x"
+        min="0"
+        max="800"
+        step="10"
+        value="200"
+      />
+      <input type="number" id="live2d-x-value" min="0" max="800" step="10" value="200" />
+    </label>
+  </div>
+
+  <!-- Position Y -->
+  <div class="live2d-setting-row">
+    <label>
+      Position Y:
+      <input
+        type="range"
+        id="live2d-y"
+        min="0"
+        max="1200"
+        step="10"
+        value="300"
+      />
+      <input type="number" id="live2d-y-value" min="0" max="1200" step="10" value="300" />
+    </label>
+  </div>
+
+  <!-- Quality -->
+  <div class="live2d-setting-row">
+    <label>
+      Quality:
+      <select id="live2d-quality">
+        <option value="high">High (60 FPS)</option>
+        <option value="medium">Medium (30 FPS)</option>
+        <option value="low">Low (24 FPS)</option>
+      </select>
+    </label>
+  </div>
+
+  <hr style="margin: 1.5rem 0; border-color: var(--SmartThemeBorderColor, #444);" />
+
+  <!-- Model Upload Section -->
+  <div class="live2d-upload-section">
+    <h4>📁 Character Model</h4>
+    <p>Upload a Live2D model folder for the current character. The model will be associated with this character and displayed during chats.</p>
+
+    <input type="file" id="live2d-file-input" class="live2d-file-input" webkitdirectory directory multiple />
+    <button type="button" class="live2d-button" id="live2d-upload-btn">
+      📤 Upload Model Folder
+    </button>
+
+    <div class="live2d-model-info" id="live2d-model-info" style="display: none;">
+      <p><strong>Current Model:</strong> <span id="live2d-current-model">None</span></p>
+      <button type="button" class="live2d-button danger" id="live2d-remove-btn">
+        🗑️ Remove Model
+      </button>
+      <button type="button" class="live2d-button" id="live2d-reload-btn">
+        🔄 Reload Model
+      </button>
+    </div>
+  </div>
+
+  <!-- Instructions -->
+  <div class="live2d-instructions">
+    <h4>ℹ️ How to Use</h4>
+    <ul>
+      <li>Create or download a Live2D model (Cubism 2.1 or 4.0 format)</li>
+      <li>Click "Upload Model Folder" and select the folder containing:
+        <ul>
+          <li><code>.model3.json</code> (or <code>.model.json</code> for Cubism 2)</li>
+          <li><code>.moc3</code> file (model data)</li>
+          <li>Texture images (<code>.png</code>)</li>
+          <li>Motion files (<code>.motion3.json</code>)</li>
+          <li>Expression files (optional)</li>
+        </ul>
+      </li>
+      <li>The model will appear in the corner during chats</li>
+      <li>Expressions will change automatically based on messages</li>
+      <li>Each character can have their own model</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Settings UI logic
+  jQuery(() => {
+    const Live2D = window.Live2DDisplay;
+    if (!Live2D) {
+      console.error('[Live2D Settings] Extension API not available');
+      return;
+    }
+
+    const settings = Live2D.getSettings();
+
+    // Load initial values
+    $('#live2d-enabled').prop('checked', settings.enabled);
+    $('#live2d-show').prop('checked', settings.showLive2D);
+    $('#live2d-expressions').prop('checked', settings.enableExpressions);
+    $('#live2d-idle').prop('checked', settings.enableIdleAnimation);
+    $('#live2d-hide-mobile').prop('checked', settings.hideMobile);
+    $('#live2d-scale').val(settings.modelScale);
+    $('#live2d-scale-value').val(settings.modelScale);
+    $('#live2d-x').val(settings.modelX);
+    $('#live2d-x-value').val(settings.modelX);
+    $('#live2d-y').val(settings.modelY);
+    $('#live2d-y-value').val(settings.modelY);
+    $('#live2d-quality').val(settings.quality);
+
+    // Event listeners
+    $('#live2d-enabled').on('change', (e) => {
+      Live2D.updateSetting('enabled', e.target.checked);
+    });
+
+    $('#live2d-show').on('change', (e) => {
+      Live2D.updateSetting('showLive2D', e.target.checked);
+    });
+
+    $('#live2d-expressions').on('change', (e) => {
+      Live2D.updateSetting('enableExpressions', e.target.checked);
+    });
+
+    $('#live2d-idle').on('change', (e) => {
+      Live2D.updateSetting('enableIdleAnimation', e.target.checked);
+    });
+
+    $('#live2d-hide-mobile').on('change', (e) => {
+      Live2D.updateSetting('hideMobile', e.target.checked);
+    });
+
+    // Scale slider
+    $('#live2d-scale').on('input', (e) => {
+      const value = parseFloat(e.target.value);
+      $('#live2d-scale-value').val(value);
+      Live2D.updateSetting('modelScale', value);
+    });
+
+    $('#live2d-scale-value').on('change', (e) => {
+      const value = parseFloat(e.target.value);
+      $('#live2d-scale').val(value);
+      Live2D.updateSetting('modelScale', value);
+    });
+
+    // Position X slider
+    $('#live2d-x').on('input', (e) => {
+      const value = parseInt(e.target.value);
+      $('#live2d-x-value').val(value);
+      Live2D.updateSetting('modelX', value);
+    });
+
+    $('#live2d-x-value').on('change', (e) => {
+      const value = parseInt(e.target.value);
+      $('#live2d-x').val(value);
+      Live2D.updateSetting('modelX', value);
+    });
+
+    // Position Y slider
+    $('#live2d-y').on('input', (e) => {
+      const value = parseInt(e.target.value);
+      $('#live2d-y-value').val(value);
+      Live2D.updateSetting('modelY', value);
+    });
+
+    $('#live2d-y-value').on('change', (e) => {
+      const value = parseInt(e.target.value);
+      $('#live2d-y').val(value);
+      Live2D.updateSetting('modelY', value);
+    });
+
+    // Quality select
+    $('#live2d-quality').on('change', (e) => {
+      Live2D.updateSetting('quality', e.target.value);
+    });
+
+    // Upload button
+    $('#live2d-upload-btn').on('click', () => {
+      $('#live2d-file-input').click();
+    });
+
+    // File input change
+    $('#live2d-file-input').on('change', (e) => {
+      const files = e.target.files;
+      if (files && files.length > 0) {
+        handleModelUpload(files);
+      }
+    });
+
+    // Remove button
+    $('#live2d-remove-btn').on('click', () => {
+      // TODO: Implement model removal
+      console.log('[Live2D] Remove model');
+    });
+
+    // Reload button
+    $('#live2d-reload-btn').on('click', () => {
+      Live2D.loadCurrentCharacterModel();
+    });
+
+    // TODO: Implement file upload handling
+    function handleModelUpload(files) {
+      console.log('[Live2D] Uploading model files:', files.length);
+      // This will need server-side support or using FileSystem API
+      alert('Model upload is not yet implemented. Please place model files in the extension directory manually.');
+    }
+  });
+</script>

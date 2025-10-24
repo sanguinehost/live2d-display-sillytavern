@@ -1,0 +1,32 @@
+# Auto detect text files and normalize line endings
+* text=auto
+
+# TypeScript and JavaScript
+*.ts text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+
+# HTML, CSS
+*.html text eol=lf
+*.css text eol=lf
+
+# Markdown
+*.md text eol=lf
+
+# Configuration files
+.gitignore text eol=lf
+.gitattributes text eol=lf
+tsconfig.json text eol=lf
+package.json text eol=lf
+pnpm-lock.yaml text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.moc3 binary
+
+# Source maps
+*.map text eol=lf

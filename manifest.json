@@ -1,0 +1,12 @@
+{
+  "display_name": "Live2D Display",
+  "loading_order": 150,
+  "requires": [],
+  "optional": [],
+  "js": "dist/index.js",
+  "css": "style.css",
+  "author": "Paperboy",
+  "version": "1.0.0",
+  "homePage": "https://github.com/yourusername/live2d-display-sillytavern",
+  "description": "Display Live2D character models in SillyTavern with expression sync"
+}

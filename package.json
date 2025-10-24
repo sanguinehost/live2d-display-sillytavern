@@ -1,0 +1,29 @@
+{
+  "name": "live2d-display-sillytavern",
+  "version": "1.0.0",
+  "description": "Live2D model display extension for SillyTavern",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "sillytavern",
+    "live2d",
+    "extension",
+    "vtuber",
+    "character"
+  ],
+  "author": "Paperboy",
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "@types/node": "^22.10.2"
+  },
+  "dependencies": {
+    "pixi.js": "^8.6.6",
+    "pixi-live2d-display": "^0.4.0"
+  }
+}
