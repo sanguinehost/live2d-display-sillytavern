@@ -1,0 +1,23 @@
+<!-- CDN Dependencies for Live2D Display Extension -->
+<!-- These must load before the extension JavaScript -->
+
+<!-- PixiJS v8 -->
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+
+<!-- Live2D Cubism Core -->
+<script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+
+<!-- pixi-live2d-display -->
+<script src="https://cdn.jsdelivr.net/npm/pixi-live2d-display@0.4.0/dist/index.min.js"></script>
+
+<script>
+  console.log('[Live2D] Dependencies loaded:', {
+    PIXI: !!window.PIXI,
+    Live2DModel: !!window.PIXI?.live2d?.Live2DModel
+  });
+
+  // Expose Live2DModel globally for easier access
+  if (window.PIXI?.live2d?.Live2DModel) {
+    window.Live2DModel = window.PIXI.live2d.Live2DModel;
+  }
+</script>

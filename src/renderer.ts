@@ -2,13 +2,29 @@
  * Live2D Renderer - handles model loading and display
  */
 
-import * as PIXI from 'pixi.js';
-import { Live2DModel } from 'pixi-live2d-display';
+import type { Application } from 'pixi.js';
 import { CANVAS_CONFIG, QUALITY_SETTINGS } from './config.js';
 import type { Live2DModelConfig, ExtensionSettings } from './types.js';
 
+// Access PIXI and Live2DModel from global scope (loaded via CDN)
+declare const PIXI: typeof import('pixi.js');
+
+// Live2D Model type (from pixi-live2d-display)
+interface Live2DModel {
+  scale: { set(x: number, y?: number): void };
+  x: number;
+  y: number;
+  motion(group: string, index: number, priority: number): void;
+  expression(name: string): void;
+  destroy(): void;
+}
+
+declare const Live2DModel: {
+  from(modelPath: string): Promise<Live2DModel>;
+};
+
 export class Live2DRenderer {
-  private app: PIXI.Application | null = null;
+  private app: Application | null = null;
   private currentModel: Live2DModel | null = null;
   private container: HTMLElement | null = null;
 

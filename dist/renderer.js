@@ -1,8 +1,6 @@
 /**
  * Live2D Renderer - handles model loading and display
  */
-import * as PIXI from 'pixi.js';
-import { Live2DModel } from 'pixi-live2d-display';
 import { CANVAS_CONFIG, QUALITY_SETTINGS } from './config.js';
 export class Live2DRenderer {
     constructor(containerId) {

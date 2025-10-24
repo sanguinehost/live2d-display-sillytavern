@@ -5,8 +5,10 @@
   "optional": [],
   "js": "dist/index.js",
   "css": "style.css",
+  "dependencies": ["loader.html"],
   "author": "Paperboy",
   "version": "1.0.0",
-  "homePage": "https://github.com/yourusername/live2d-display-sillytavern",
-  "description": "Display Live2D character models in SillyTavern with expression sync"
+  "homePage": "https://github.com/sanguinehost/live2d-display-sillytavern",
+  "description": "Display Live2D character models in SillyTavern with expression sync",
+  "auto_update": false
 }
