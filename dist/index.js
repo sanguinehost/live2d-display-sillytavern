@@ -2,10 +2,10 @@
  * Live2D Display Extension for SillyTavern
  * Main entry point
  */
-import { Live2DRenderer } from './renderer';
-import { CharacterManager } from './characterManager';
-import { messageToExpression } from './expressionMapper';
-import { DEFAULT_SETTINGS, EXTENSION_NAME, RETURN_TO_NEUTRAL_DELAY } from './config';
+import { Live2DRenderer } from './renderer.js';
+import { CharacterManager } from './characterManager.js';
+import { messageToExpression } from './expressionMapper.js';
+import { DEFAULT_SETTINGS, EXTENSION_NAME, RETURN_TO_NEUTRAL_DELAY } from './config.js';
 // Global state
 let renderer = null;
 let extensionSettings = { ...DEFAULT_SETTINGS };

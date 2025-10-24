@@ -1,7 +1,7 @@
 /**
  * Expression mapper - converts message text to Live2D expressions
  */
-import { EMOTION_KEYWORDS, EXPRESSION_MAP } from './config';
+import { EMOTION_KEYWORDS, EXPRESSION_MAP } from './config.js';
 /**
  * Analyze message text and detect emotion
  */

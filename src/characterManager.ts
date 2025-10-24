@@ -2,7 +2,7 @@
  * Character Manager - handles character/model associations
  */
 
-import type { CharacterData, Live2DModelConfig } from './types';
+import type { CharacterData, Live2DModelConfig } from './types.js';
 
 export class CharacterManager {
   /**

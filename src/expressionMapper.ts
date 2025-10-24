@@ -2,8 +2,8 @@
  * Expression mapper - converts message text to Live2D expressions
  */
 
-import { EMOTION_KEYWORDS, EXPRESSION_MAP } from './config';
-import type { Emotion } from './types';
+import { EMOTION_KEYWORDS, EXPRESSION_MAP } from './config.js';
+import type { Emotion } from './types.js';
 
 /**
  * Analyze message text and detect emotion

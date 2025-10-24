@@ -3,11 +3,11 @@
  * Main entry point
  */
 
-import { Live2DRenderer } from './renderer';
-import { CharacterManager } from './characterManager';
-import { messageToExpression } from './expressionMapper';
-import { DEFAULT_SETTINGS, EXTENSION_NAME, RETURN_TO_NEUTRAL_DELAY } from './config';
-import type { ExtensionSettings, SillyTavernContext } from './types';
+import { Live2DRenderer } from './renderer.js';
+import { CharacterManager } from './characterManager.js';
+import { messageToExpression } from './expressionMapper.js';
+import { DEFAULT_SETTINGS, EXTENSION_NAME, RETURN_TO_NEUTRAL_DELAY } from './config.js';
+import type { ExtensionSettings, SillyTavernContext } from './types.js';
 
 // Global state
 let renderer: Live2DRenderer | null = null;

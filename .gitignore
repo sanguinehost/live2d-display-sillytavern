@@ -1,6 +1,8 @@
 node_modules/
-dist/
 *.log
 .DS_Store
 .vscode/
 .idea/
+
+# Note: dist/ is NOT ignored because it contains the compiled
+# JavaScript that SillyTavern needs to load the extension

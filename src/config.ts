@@ -2,7 +2,7 @@
  * Configuration constants for Live2D Display extension
  */
 
-import type { ExtensionSettings, ExpressionMapping } from './types';
+import type { ExtensionSettings, ExpressionMapping } from './types.js';
 
 export const EXTENSION_NAME = 'live2d-display';
 

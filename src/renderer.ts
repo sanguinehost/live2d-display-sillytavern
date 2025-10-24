@@ -4,8 +4,8 @@
 
 import * as PIXI from 'pixi.js';
 import { Live2DModel } from 'pixi-live2d-display';
-import { CANVAS_CONFIG, QUALITY_SETTINGS } from './config';
-import type { Live2DModelConfig, ExtensionSettings } from './types';
+import { CANVAS_CONFIG, QUALITY_SETTINGS } from './config.js';
+import type { Live2DModelConfig, ExtensionSettings } from './types.js';
 
 export class Live2DRenderer {
   private app: PIXI.Application | null = null;

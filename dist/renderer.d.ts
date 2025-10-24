@@ -1,7 +1,7 @@
 /**
  * Live2D Renderer - handles model loading and display
  */
-import type { Live2DModelConfig } from './types';
+import type { Live2DModelConfig } from './types.js';
 export declare class Live2DRenderer {
     private app;
     private currentModel;

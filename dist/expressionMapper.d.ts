@@ -1,7 +1,7 @@
 /**
  * Expression mapper - converts message text to Live2D expressions
  */
-import type { Emotion } from './types';
+import type { Emotion } from './types.js';
 /**
  * Analyze message text and detect emotion
  */
