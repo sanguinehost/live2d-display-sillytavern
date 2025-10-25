@@ -236,16 +236,56 @@ function cleanup() {
     }
     console.log('[Live2D] Extension cleaned up');
 }
+/**
+ * Save model path for current character
+ */
+async function saveModelPath(modelPath) {
+    try {
+        const context = getContext();
+        const character = context.characters[context.characterId];
+        if (!character) {
+            console.warn('[Live2D] No character found');
+            return;
+        }
+        // Update character data
+        if (modelPath) {
+            CharacterManager.setModelPath(character, modelPath);
+        }
+        else {
+            CharacterManager.removeModel(character);
+        }
+        // Save character data to SillyTavern
+        await context.saveCharacterData(context.characterId);
+        // Reload model
+        await loadCurrentCharacterModel();
+        console.log('[Live2D] Model path saved for character:', character.name);
+    }
+    catch (error) {
+        console.error('[Live2D] Failed to save model path:', error);
+    }
+}
 // Export API for settings UI
 window.Live2DDisplay = {
     updateSetting,
     getSettings: () => extensionSettings,
     loadCurrentCharacterModel,
+    saveModelPath,
     cleanup,
 };
 // Initialize when DOM is ready
 jQuery(async () => {
-    initializeExtension();
+    try {
+        // Load settings UI first
+        console.log('[Live2D] Loading settings UI...');
+        const settingsHtml = await renderExtensionTemplateAsync('third-party/live2d-display-sillytavern', 'settings');
+        $('#live2d_container').append(settingsHtml);
+        console.log('[Live2D] Settings UI loaded');
+        // Then initialize extension
+        await initializeExtension();
+    }
+    catch (error) {
+        console.error('[Live2D] Failed to initialize extension:', error);
+    }
 });
 export { initializeExtension, cleanup };
 //# sourceMappingURL=index.js.map

@@ -29,9 +29,28 @@ npm run build
 2. Extract to `SillyTavern/data/default-user/extensions/live2d-display-sillytavern`
 3. Restart SillyTavern
 
-## Usage
+## Quick Start
 
-### 1. Prepare Your Live2D Model
+### Try the Test Models
+
+Two Live2D models are included for testing:
+
+**1. Jian (简)** - Female character with rich expressions
+- Path: `models/jian/简.model3.json`
+
+**2. Jingliu (镜流)** - Female character
+- Path: `models/jingliu/╛╡┴ў.model3.json`
+
+**To use a test model:**
+1. Open SillyTavern and select a character
+2. Go to **Extensions → Live2D Display**
+3. In the "Model Path" field, enter: `models/jian/简.model3.json`
+4. Click **"Save Model Path"**
+5. The model should appear in the corner!
+
+### Adding Your Own Models
+
+**1. Prepare Your Live2D Model**
 
 You need a Live2D Cubism model folder containing:
 - `.model3.json` (Cubism 4) or `.model.json` (Cubism 2)
@@ -46,32 +65,18 @@ You need a Live2D Cubism model folder containing:
 - Find free models on [Live2D community](https://www.live2d.com/en/)
 - Commission an artist
 
-### 2. Install Model for Character
+**2. Install the Model**
 
-**Method A: Manual (Recommended)**
-1. Place your model folder in `SillyTavern/data/default-user/extensions/live2d-display-sillytavern/models/`
-2. Open character's JSON file
-3. Add to the `data` field:
-```json
-{
-  "data": {
-    "live2d_model_path": "/scripts/extensions/live2d-display-sillytavern/models/your-model/model.model3.json",
-    "live2d_config": {
-      "scale": 0.5,
-      "x": 200,
-      "y": 300,
-      "enableIdleAnimation": true,
-      "enableExpressions": true
-    }
-  }
-}
-```
+1. Place your model folder in:
+   ```
+   live2d-display-sillytavern/models/your-model/
+   ```
+2. In SillyTavern, select a character
+3. Go to **Extensions → Live2D Display**
+4. Enter the model path: `models/your-model/model.model3.json`
+5. Click **"Save Model Path"**
 
-**Method B: Settings UI** (Coming Soon)
-1. Open character in SillyTavern
-2. Go to Extensions → Live2D Display
-3. Click "Upload Model Folder"
-4. Select your model folder
+**IMPORTANT:** Paths are relative to the extension directory. Just use `models/folder-name/file.model3.json`
 
 ### 3. Configure Settings
 

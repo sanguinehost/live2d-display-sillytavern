@@ -4,5 +4,9 @@ node_modules/
 .vscode/
 .idea/
 
+# Models directory - users should add their own models
+models/*/
+!models/README.md
+
 # Note: dist/ is NOT ignored because it contains the compiled
 # JavaScript that SillyTavern needs to load the extension
